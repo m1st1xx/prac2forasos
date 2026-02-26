@@ -23,16 +23,18 @@ auto eth1
 iface eth1 inet static
 address 192.168.56.10
 netmask 255.255.255.0
-
+```
+### VM2 (клиент) 
+```bash
 nano /etc/network/interfaces
 
 auto eth1
 iface eth1 inet static
 address 192.168.56.11
 netmask 255.255.255.0
-
-## 📂 2. Настройка NFS Сервера (VM1)
-
+```
+### 📂 2. Настройка NFS Сервера (VM1)
+```bash
 sudo nano /etc/exports
 
 /mnt/raid 192.168.56.11(rw,sync,no_subtree_check,no_root_squash)
@@ -41,9 +43,9 @@ sudo nano /etc/exports
 
 sudo exportfs -ra
 sudo systemctl restart nfs-kernel-server
-
-## 💻 3. Настройка NFS Клиента (VM2)
-
+```
+### 💻 3. Настройка NFS Клиента (VM2)
+```bash
 sudo mkdir -p /mnt/raid_remote
 
 sudo mount 192.168.56.10:/mnt/raid /mnt/raid_remote
